@@ -6,9 +6,8 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
+@Data
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Client {
 
     @Id
@@ -21,6 +20,15 @@ public class Client {
     private String postalCode;
     private String city;
     private String phone;
+
+    public Client(String firstName, String lastName, String address, String postalCode, String city, String phone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.postalCode = postalCode;
+        this.city = city;
+        this.phone = phone;
+    }
 
 
     // Compte courant
