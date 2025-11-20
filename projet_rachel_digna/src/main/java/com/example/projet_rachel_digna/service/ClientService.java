@@ -1,4 +1,9 @@
 package com.example.projet_rachel_digna.service;
 
-public class ClientService {
+import com.example.projet_rachel_digna.entity.Client;
+
+public interface ClientService {
+    void CreateClient(Client client);
+    void UpdateClient(Client client);
+    Client DeleteClient(Client client);
 }
