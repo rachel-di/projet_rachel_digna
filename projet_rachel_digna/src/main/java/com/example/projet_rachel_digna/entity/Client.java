@@ -31,13 +31,13 @@ public class Client {
     }
 
 
-    // Compte courant
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "current_account_id")
-    private CurrentAccount currentAccount;
-
-    // Compte d'epargne
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "savings_account_id")
-    private SavingAccount savingsAccount;
+//    // Compte courant
+//    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JoinColumn(name = "current_account_id")
+//    private CurrentAccount currentAccount;
+//
+//    // Compte d'epargne
+//    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JoinColumn(name = "savings_account_id")
+//    private SavingAccount savingsAccount;
 }

@@ -1,20 +1,38 @@
 package com.example.projet_rachel_digna.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDate;
+
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-@AllArgsConstructor
 public abstract class Account {
-
     @Id
-    private Long accountNumber;
+    private String accountNumber;
+    private double balance;
+    private LocalDate creationDate;
 
-    private Double balance;
+    // Constructeur commun
+    public Account(String accountNumber, double balance, LocalDate creationDate) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+        this.creationDate = creationDate;
+    }
 
-    private LocalDate openingDate;
+    // Méthodes communes
+    public void deposit(double amount) {
+        if (amount > 0) {
+            this.balance += amount;
+        }
+    }
+
+    // Méthodes abstraites (comportement différent)
+    public abstract boolean withdraw(double amount);
+    public abstract double getInterestRate();
+    public abstract String getAccountType();
 }
