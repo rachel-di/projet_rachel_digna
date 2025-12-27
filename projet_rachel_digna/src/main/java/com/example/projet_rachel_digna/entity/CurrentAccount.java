@@ -1,11 +1,12 @@
 package com.example.projet_rachel_digna.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 import lombok.*;
 
 import java.time.LocalDate;
 
+@Setter
+@Getter
 @Entity
 @NoArgsConstructor
 public class CurrentAccount extends Account {
@@ -36,6 +37,4 @@ public class CurrentAccount extends Account {
         return "Current";
     }
 
-    public double getOverdraftLimit() { return overdraftLimit; }
-    public void setOverdraftLimit(double limit) { this.overdraftLimit = limit; }
 }

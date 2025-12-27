@@ -2,10 +2,12 @@ package com.example.projet_rachel_digna.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 public class ClientDto {
 
     private Long id;
@@ -28,7 +30,7 @@ public class ClientDto {
     @NotBlank(message = "Client phone cannot be empty")
     private String phone;
 
-    //private List<AccountDto> accounts;
+    private List<AccountDto> accounts;
 
     public ClientDto(String lastName, String firstName, String address, String postalCode, String city, String phone) {
         this.lastName = lastName;

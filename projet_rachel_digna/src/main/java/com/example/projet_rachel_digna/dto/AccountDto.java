@@ -1,11 +1,27 @@
 package com.example.projet_rachel_digna.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Data
+@NoArgsConstructor
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "accountType",
+        visible = true
+)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = CurrentAccountDto.class, name = "Current"),
+        @JsonSubTypes.Type(value = SavingAccountDto.class, name = "Saving")
+})
 public class AccountDto {
 
     private Long id;
@@ -13,20 +29,16 @@ public class AccountDto {
     @NotBlank(message = "Account number cannot be empty")
     private String accountNumber;
 
-    @NotBlank(message = "Account balance cannot be empty")
+    @NotNull(message = "Account balance cannot be empty")
     private Double balance;
 
-    @NotBlank(message = "Account creation date cannot be empty")
+    @NotNull(message = "Account creation date cannot be empty")
     private LocalDate creationDate;
 
-    @NotBlank(message = "Account type cannot be empty")
-    private String accountType; // "Current" ou "Saving"
-
     public AccountDto(String accountNumber, double balance,
-                      LocalDate creationDate, String accountType) {
+                      LocalDate creationDate) {
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.creationDate = creationDate;
-        this.accountType = accountType;
     }
 }

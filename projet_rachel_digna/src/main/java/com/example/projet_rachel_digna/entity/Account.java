@@ -1,8 +1,6 @@
 package com.example.projet_rachel_digna.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,25 +11,28 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public abstract class Account {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String accountNumber;
     private double balance;
     private LocalDate creationDate;
 
-    // Constructeur commun
+    @ManyToOne
+    private Client client;
+
     public Account(String accountNumber, double balance, LocalDate creationDate) {
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.creationDate = creationDate;
     }
 
-    // Méthodes communes
     public void deposit(double amount) {
         if (amount > 0) {
             this.balance += amount;
         }
     }
 
-    // Méthodes abstraites (comportement différent)
     public abstract boolean withdraw(double amount);
     public abstract double getInterestRate();
     public abstract String getAccountType();

@@ -1,12 +1,11 @@
 package com.example.projet_rachel_digna.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.*;
 
 import java.time.LocalDate;
 
+@Setter
 @Entity
 @NoArgsConstructor
 public class SavingAccount extends Account {
@@ -36,8 +35,6 @@ public class SavingAccount extends Account {
     public String getAccountType() {
         return "Saving";
     }
-
-    public void setInterestRate(double rate) { this.interestRate = rate; }
 
     public double calculateInterest() {
         return getBalance() * (interestRate / 100);

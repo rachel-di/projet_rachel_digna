@@ -3,6 +3,8 @@ package com.example.projet_rachel_digna.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -30,14 +32,12 @@ public class Client {
         this.phone = phone;
     }
 
+    @OneToMany(mappedBy = "client", cascade = CascadeType.PERSIST)
+    private List<Account> accounts;
 
-//    // Compte courant
-//    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-//    @JoinColumn(name = "current_account_id")
-//    private CurrentAccount currentAccount;
-//
-//    // Compte d'epargne
-//    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-//    @JoinColumn(name = "savings_account_id")
-//    private SavingAccount savingsAccount;
+    public void addAccount(Account account) {
+        if (accounts.size() < 2) { // Max 2 comptes
+            accounts.add(account);
+        }
+    }
 }

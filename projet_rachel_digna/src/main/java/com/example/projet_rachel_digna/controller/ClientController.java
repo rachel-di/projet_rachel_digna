@@ -1,8 +1,6 @@
 package com.example.projet_rachel_digna.controller;
 
 import com.example.projet_rachel_digna.dto.ClientDto;
-import com.example.projet_rachel_digna.entity.Client;
-import com.example.projet_rachel_digna.repository.ClientRepository;
 import com.example.projet_rachel_digna.service.ClientService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +41,12 @@ public class ClientController {
     }
 
     @DeleteMapping("{id}")
-    public void deleteClient(@PathVariable Long id) {
-        clientService.deleteClient(id);
+    public ResponseEntity<ClientDto> deleteClient(@PathVariable Long id) {
+        ClientDto client = clientService.deleteClient(id);
+        if (client != null) {
+            return ResponseEntity.ok(client);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping
